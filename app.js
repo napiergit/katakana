@@ -301,7 +301,7 @@ function setupEventListeners() {
             const targetUnlearnedIndex = Math.floor(percentage * unlearnedInSection.length);
             const targetChar = unlearnedInSection[Math.min(targetUnlearnedIndex, unlearnedInSection.length - 1)];
 
-            // Find this character's index in the full hiraganaCharacters array
+            // Find this character's index in the full katakanaCharacters array
             const newIndex = katakanaCharacters.findIndex(c => c.char === targetChar.char);
 
             if (newIndex !== -1 && newIndex !== currentIndex) {
@@ -816,7 +816,7 @@ function previousCharacter() {
 
 // Update current position indicator on progress bar
 function updateCurrentPositionIndicator(container, progressPercent, charIndex) {
-    const char = hiraganaCharacters[charIndex];
+    const char = katakanaCharacters[charIndex];
     let indicator = container.querySelector('.current-position-indicator');
 
     if (!indicator) {
@@ -880,7 +880,7 @@ function updateCurrentPositionIndicator(container, progressPercent, charIndex) {
 
 // Update the display with current character
 function updateDisplay() {
-    const current = hiraganaCharacters[currentIndex];
+    const current = katakanaCharacters[currentIndex];
 
     // Update character displays
     document.getElementById('characterDisplay').textContent = current.char;
@@ -933,10 +933,10 @@ function updateDisplay() {
     console.log('✅ SVG appended to refChar');
 
     document.getElementById('currentIndex').textContent = currentIndex + 1;
-    document.getElementById('totalChars').textContent = hiraganaCharacters.length;
+    document.getElementById('totalChars').textContent = katakanaCharacters.length;
 
     // Calculate unlearned characters for section labels
-    const basicUnlearned = basicHiragana.filter(c => !c.learned).length;
+    const basicUnlearned = basicKatakana.filter(c => !c.learned).length;
     const dakutenUnlearned = dakutenCharacters.filter(c => !c.learned).length;
     const handakutenUnlearned = handakutenCharacters.filter(c => !c.learned).length;
 
@@ -965,7 +965,7 @@ function updateDisplay() {
         // Get unlearned characters for this section
         let unlearnedInSection = [];
         if (idx === 0) {
-            unlearnedInSection = basicHiragana.filter(c => !c.learned);
+            unlearnedInSection = basicKatakana.filter(c => !c.learned);
         } else if (idx === 1) {
             unlearnedInSection = dakutenCharacters.filter(c => !c.learned);
         } else {
@@ -976,7 +976,7 @@ function updateDisplay() {
 
         if (unlearnedInSection.length > 0 && idx === sectionIndex) {
             // Find current character's position among unlearned characters
-            const currentChar = hiraganaCharacters[currentIndex];
+            const currentChar = katakanaCharacters[currentIndex];
             const positionInUnlearned = unlearnedInSection.findIndex(c => c.char === currentChar.char);
 
             if (positionInUnlearned !== -1) {
@@ -1001,7 +1001,7 @@ function updateDisplay() {
     document.getElementById('prevBtn').classList.toggle('opacity-50', currentIndex === 0);
     document.getElementById('prevBtn').classList.toggle('cursor-not-allowed', currentIndex === 0);
 
-    const isLast = currentIndex === hiraganaCharacters.length - 1;
+    const isLast = currentIndex === katakanaCharacters.length - 1;
     document.getElementById('nextBtn').textContent = isLast ? '🎉 Complete!' : 'Next →';
 
     // Update quick learned checkbox
@@ -1009,11 +1009,11 @@ function updateDisplay() {
     const quickLearnedContainer = document.getElementById('quickLearnedContainer');
 
     if (quickLearnedCheckbox && quickLearnedContainer) {
-        const currentChar = hiraganaCharacters[currentIndex];
+        const currentChar = katakanaCharacters[currentIndex];
 
         // Find the character in our arrays to check learned state
         let charData = null;
-        charData = basicHiragana.find(c => c.char === currentChar.char) ||
+        charData = basicKatakana.find(c => c.char === currentChar.char) ||
             dakutenCharacters.find(c => c.char === currentChar.char) ||
             handakutenCharacters.find(c => c.char === currentChar.char);
 
@@ -1036,7 +1036,7 @@ function updateStrokeOrder() {
 
     if (!showStrokeOrder) return;
 
-    const current = hiraganaCharacters[currentIndex];
+    const current = katakanaCharacters[currentIndex];
     const strokes = strokeOrderData[current.char];
 
     if (!strokes) return;
@@ -1310,10 +1310,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ===== CHARACTER MANAGEMENT SYSTEM =====
 
-// Initialize character data from hiraganaCharacters
+// Initialize character data from katakanaCharacters
 function initializeCharacterData() {
     // Add learned property to existing arrays
-    basicHiragana.forEach(c => c.learned = false);
+    basicKatakana.forEach(c => c.learned = false);
     dakutenCharacters.forEach(c => c.learned = false);
     handakutenCharacters.forEach(c => c.learned = false);
 
@@ -1322,12 +1322,13 @@ function initializeCharacterData() {
 }
 
 // Load learned state
+// Load learned state
 function loadLearnedState() {
-    const saved = localStorage.getItem('hiragana-learned');
+    const saved = localStorage.getItem('katakana-learned');
     if (saved) {
         try {
             const learned = JSON.parse(saved);
-            [basicHiragana, dakutenCharacters, handakutenCharacters].forEach(arr => {
+            [basicKatakana, dakutenCharacters, handakutenCharacters].forEach(arr => {
                 arr.forEach(char => {
                     if (learned[char.char]) {
                         char.learned = true;
@@ -1343,14 +1344,14 @@ function loadLearnedState() {
 // Save learned state
 function saveLearnedState() {
     const learned = {};
-    [basicHiragana, dakutenCharacters, handakutenCharacters].forEach(arr => {
+    [basicKatakana, dakutenCharacters, handakutenCharacters].forEach(arr => {
         arr.forEach(char => {
             if (char.learned) {
                 learned[char.char] = true;
             }
         });
     });
-    localStorage.setItem('hiragana-learned', JSON.stringify(learned));
+    localStorage.setItem('katakana-learned', JSON.stringify(learned));
 
     // Dispatch event for Firebase sync
     window.dispatchEvent(new CustomEvent('learnedStateChanged', { detail: learned }));
@@ -1358,7 +1359,7 @@ function saveLearnedState() {
 
 // Toggle character learned state
 function toggleCharacterLearned(char, isLearned) {
-    [basicHiragana, dakutenCharacters, handakutenCharacters].forEach(arr => {
+    [basicKatakana, dakutenCharacters, handakutenCharacters].forEach(arr => {
         const found = arr.find(c => c.char === char);
         if (found) {
             found.learned = isLearned;
@@ -1376,9 +1377,9 @@ function createCharacterCard(charData) {
         card.classList.add('learned');
     }
 
-    const hiragana = document.createElement('div');
-    hiragana.className = 'char-card-hiragana';
-    hiragana.textContent = charData.char;
+    const katakana = document.createElement('div');
+    katakana.className = 'char-card-katakana';
+    katakana.textContent = charData.char;
 
     const romaji = document.createElement('div');
     romaji.className = 'char-card-romaji';
@@ -1407,7 +1408,7 @@ function createCharacterCard(charData) {
     checkboxContainer.appendChild(checkbox);
     checkboxContainer.appendChild(label);
 
-    card.appendChild(hiragana);
+    card.appendChild(katakana);
     card.appendChild(romaji);
     card.appendChild(checkboxContainer);
 
@@ -1418,11 +1419,11 @@ function createCharacterCard(charData) {
             return;
         }
 
-        // Find character index in hiraganaCharacters array
-        const charIndex = hiraganaCharacters.findIndex(c => c.char === charData.char);
+        // Find character index in katakanaCharacters array
+        const charIndex = katakanaCharacters.findIndex(c => c.char === charData.char);
         if (charIndex !== -1) {
             currentIndex = charIndex;
-            localStorage.setItem('hiragana-progress', currentIndex);
+            localStorage.setItem('katakana-progress', currentIndex);
             updateDisplay();
             updateStrokeOrder();
             clearCanvas();
@@ -1450,7 +1451,7 @@ function populateCharacterGrids() {
     handakutenGrid.innerHTML = '';
 
     // Populate Basic
-    basicHiragana.forEach(char => {
+    basicKatakana.forEach(char => {
         basicGrid.appendChild(createCharacterCard(char));
     });
 
@@ -1588,7 +1589,7 @@ function setupAuthUI() {
 
             // Load learned state from Firestore
             if (learned && Object.keys(learned).length > 0) {
-                [basicHiragana, dakutenCharacters, handakutenCharacters].forEach(arr => {
+                [basicKatakana, dakutenCharacters, handakutenCharacters].forEach(arr => {
                     arr.forEach(char => {
                         if (learned[char.char]) {
                             char.learned = true;
@@ -1619,7 +1620,7 @@ function setupAuthUI() {
     const quickLearnedCheckbox = document.getElementById('quickLearnedCheckbox');
     if (quickLearnedCheckbox) {
         quickLearnedCheckbox.addEventListener('change', (e) => {
-            const currentChar = hiraganaCharacters[currentIndex];
+            const currentChar = katakanaCharacters[currentIndex];
             toggleCharacterLearned(currentChar.char, e.target.checked);
 
             // If marking as learned, advance to next unlearned character

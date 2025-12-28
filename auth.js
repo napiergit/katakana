@@ -181,7 +181,7 @@ class AuthManager {
                     const userData = userDoc.data();
                     if (!userData.learned || Object.keys(userData.learned).length === 0) {
                         // Cloud has no learned data, but we might have local data
-                        const localLearned = localStorage.getItem('hiragana-learned');
+                        const localLearned = localStorage.getItem('katakana-learned');
                         if (localLearned && localLearned !== '{}') {
                             console.log('🔄 Cloud empty but local data exists - merging up');
                             await this.saveUserData({
@@ -319,25 +319,25 @@ class AuthManager {
 
     saveToLocalStorage(preferences) {
         if (preferences.progress !== undefined) {
-            localStorage.setItem('hiragana-progress', preferences.progress);
+            localStorage.setItem('katakana-progress', preferences.progress);
         }
         if (preferences.theme !== undefined) {
-            localStorage.setItem('hiragana-theme', preferences.theme);
+            localStorage.setItem('katakana-theme', preferences.theme);
         }
         if (preferences.darkMode !== undefined) {
-            localStorage.setItem('hiragana-dark-mode', preferences.darkMode);
+            localStorage.setItem('katakana-dark-mode', preferences.darkMode);
         }
         if (preferences.learned !== undefined) {
-            localStorage.setItem('hiragana-learned', JSON.stringify(preferences.learned));
+            localStorage.setItem('katakana-learned', JSON.stringify(preferences.learned));
         }
     }
 
     async migrateLocalData() {
         // Get current localStorage data
-        const localProgress = localStorage.getItem('hiragana-progress');
-        const localTheme = localStorage.getItem('hiragana-theme');
-        const localDarkMode = localStorage.getItem('hiragana-dark-mode');
-        const localLearned = localStorage.getItem('hiragana-learned');
+        const localProgress = localStorage.getItem('katakana-progress');
+        const localTheme = localStorage.getItem('katakana-theme');
+        const localDarkMode = localStorage.getItem('katakana-dark-mode');
+        const localLearned = localStorage.getItem('katakana-learned');
 
         const preferences = {
             progress: localProgress ? parseInt(localProgress) : 0,

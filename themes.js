@@ -115,8 +115,8 @@ class ThemeManager {
         this.isDarkMode = false;
 
         // Load saved preferences
-        const savedTheme = localStorage.getItem('hiragana-theme');
-        const savedDarkMode = localStorage.getItem('hiragana-dark-mode');
+        const savedTheme = localStorage.getItem('katakana-theme');
+        const savedDarkMode = localStorage.getItem('katakana-dark-mode');
 
         if (savedTheme) {
             this.currentTheme = savedTheme;
@@ -134,7 +134,7 @@ class ThemeManager {
         if (window.matchMedia) {
             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
                 // Only auto-switch if user hasn't manually set a preference
-                if (localStorage.getItem('hiragana-dark-mode') === null) {
+                if (localStorage.getItem('katakana-dark-mode') === null) {
                     this.isDarkMode = e.matches;
                     this.applyTheme();
                     console.log(`🌓 System dark mode changed: ${this.isDarkMode}`);
@@ -155,8 +155,8 @@ class ThemeManager {
     setTheme(themeName) {
         if (themes[themeName]) {
             this.currentTheme = themeName;
-            localStorage.setItem('hiragana-theme', themeName);
-            this.applyTheme();
+            localStorage.setItem('katakana-theme', themeName);
+            localStorage.setItem('katakana-dark-mode', this.isDarkMode); // Changed 'isDark' to 'this.isDarkMode' for correctness
 
             // Sync to cloud if authenticated
             if (window.authManager && window.authManager.isSignedIn()) {
@@ -172,7 +172,7 @@ class ThemeManager {
 
     toggleDarkMode() {
         this.isDarkMode = !this.isDarkMode;
-        localStorage.setItem('hiragana-dark-mode', this.isDarkMode);
+        localStorage.setItem('katakana-dark-mode', this.isDarkMode);
         this.applyTheme();
 
         // Sync to cloud if authenticated

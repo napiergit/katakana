@@ -1,6 +1,6 @@
-# ひらがな Practice - Hiragana Learning Web App
+# ひらがな Practice - Katakana Learning Web App
 
-A beautiful, interactive web application for learning and practicing Japanese hiragana characters through drawing.
+A beautiful, interactive web application for learning and practicing Japanese katakana characters through drawing.
 
 ## Features
 
@@ -14,14 +14,14 @@ A beautiful, interactive web application for learning and practicing Japanese hi
 - 💾 **LocalStorage Memory** - Theme and dark mode preferences saved locally
 - 🎨 **Modern UI** - Beautiful gradient design with smooth animations
 - 📊 **Progress Tracking** - Clickable progress bar to jump to any character
-- 🔤 **Complete Hiragana Set** - All 71 characters including dakuten (゛) and handakuten (゜)
+- 🔤 **Complete Katakana Set** - All 71 characters including dakuten (゛) and handakuten (゜)
 - 🎯 **Reference Overlay** - Faded character guide to help you draw correctly
 - ⌨️ **Keyboard Shortcuts** - Arrow keys to navigate, 'C' to clear
 - 📱 **Mobile-Optimized Order** - Characters arranged like Japanese mobile keyboard (a,e,i,o,u pattern)
 
 ## How to Use
 
-1. **Draw** - Use your mouse or finger to draw the displayed hiragana character
+1. **Draw** - Use your mouse or finger to draw the displayed katakana character
 2. **Follow Stroke Order** - Numbered arrows show the correct stroke sequence
 3. **Auto-Progress** - When you've drawn enough, a checkmark appears and it auto-advances
 4. **Clear** - Click the "Clear" button to erase and try again
@@ -57,10 +57,10 @@ git init
 git add .
 
 # Commit
-git commit -m "Initial commit: Hiragana practice app"
+git commit -m "Initial commit: Katakana practice app"
 
 # Add remote repository (replace with your repo URL)
-git remote add origin https://github.com/yourusername/hiragana.git
+git remote add origin https://github.com/yourusername/katakana.git
 
 # Push to GitHub
 git push -u origin main

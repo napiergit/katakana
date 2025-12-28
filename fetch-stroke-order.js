@@ -4,7 +4,7 @@
 const https = require('https');
 const fs = require('fs');
 
-// All hiragana characters we need with their Unicode code points
+// All katakana characters we need with their Unicode code points
 const katakanaChars = [
     // Vowels
     { char: 'ア', code: '030a2' },

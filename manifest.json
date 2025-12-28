@@ -1,6 +1,6 @@
 {
-  "name": "Hiragana Practice",
-  "short_name": "ひらがな",
+  "name": "Learn Katakana",
+  "short_name": "Katakana",
   "description": "Learn and practice Hiragana characters with stroke order validation",
   "start_url": "/",
   "display": "standalone",

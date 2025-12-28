@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hiragana-v1';
+const CACHE_NAME = 'katakana-app-v1';
 const ASSETS_TO_CACHE = [
     '/',
     '/index.html',
@@ -12,7 +12,7 @@ const ASSETS_TO_CACHE = [
     '/firebase-config.js'
 ];
 
-const CDN_CACHE_NAME = 'hiragana-cdn-v1';
+const CDN_CACHE_NAME = 'katakana-cdn-v1';
 
 // Install event - precache static assets
 self.addEventListener('install', (event) => {
