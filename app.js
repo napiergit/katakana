@@ -140,7 +140,7 @@ let completedStrokes = []; // Array of completed strokes
 const STROKE_START_TOLERANCE = 25; // How close to start point to begin stroke (increased for more leeway)
 const STROKE_PATH_TOLERANCE = 25; // How close to path the drawing should be
 const MIN_STROKE_LENGTH = 10; // Minimum points to consider a stroke
-const AUTO_PROGRESS_DELAY = 1500; // 1.5 seconds after all strokes complete
+const AUTO_PROGRESS_DELAY = 1000; // 0.5 seconds after all strokes complete
 
 // Initialize the app
 function init() {
