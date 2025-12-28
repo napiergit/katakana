@@ -31,11 +31,11 @@ ctx.fillStyle = '#ffffff';
 ctx.font = 'bold 80px Arial, sans-serif';
 ctx.textAlign = 'center';
 ctx.textBaseline = 'middle';
-ctx.fillText('Learn Hiragana', 600, 180);
+ctx.fillText('Learn Katakana', 600, 180);
 
 // Japanese characters
 ctx.font = 'bold 120px Arial, sans-serif';
-ctx.fillText('あ い う え お', 600, 320);
+ctx.fillText('ア イ ウ エ オ', 600, 320);
 
 // Subtitle
 ctx.font = '40px Arial, sans-serif';
@@ -43,7 +43,7 @@ ctx.fillText('Free Interactive Japanese Writing Practice', 600, 420);
 
 // Domain
 ctx.font = 'bold 36px Arial, sans-serif';
-ctx.fillText('hiragana.site', 600, 500);
+ctx.fillText('katakana.site', 600, 500);
 
 // Features
 ctx.font = '28px Arial, sans-serif';

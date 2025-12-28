@@ -3,13 +3,13 @@
 // See firebase-config.template.js for instructions
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBKgUerYYOQrUQVWymFrbhYsBW18cHaIuI",
-    authDomain: "hiragana-1394f.firebaseapp.com",
-    projectId: "hiragana-1394f",
-    storageBucket: "hiragana-1394f.firebasestorage.app",
-    messagingSenderId: "711379868720",
-    appId: "1:711379868720:web:18dc90ff849bb0843961f5",
-    measurementId: "G-80D6LWNX88"
+    apiKey: "AIzaSyBEb4_v7DQEQTy2ltNYqNKT7vaZtZQn0dI",
+    authDomain: "katakana-622df.firebaseapp.com",
+    projectId: "katakana-622df",
+    storageBucket: "katakana-622df.firebasestorage.app",
+    messagingSenderId: "579813001710",
+    appId: "1:579813001710:web:a1016a33dc1db771b166ff",
+    measurementId: "G-T6J2Z71175"
 };
 
 // Export the config
